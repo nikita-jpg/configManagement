@@ -32,7 +32,10 @@ public class Main {
             if(links!=null && links.length!=0) 
                 chosenLink = choiceVersion(links);//Выбрали нужную версию
             else
-                System.out.println();
+            {
+                System.out.println("Такого пакета не существует");
+                System.exit(0);
+            }
             
             dependences = getDependences(chosenLink.getUrl(),chosenLink.getName());//Получаем зависимости для данной версии;
             rec(inputString,dependences,2);//Рекурсивная функция по поиску зависимостей
