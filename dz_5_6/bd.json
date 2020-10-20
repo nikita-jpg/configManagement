@@ -1,0 +1,42 @@
+{
+    "com": {
+        "hash": "",
+        "dep": None
+    },
+    "dep": {
+        "hash": "",
+        "dep": None
+    },
+    "g": {
+        "hash": "",
+        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
+    },
+    "q": {
+        "hash": "",
+        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
+    },
+    "c": {
+        "hash": "",
+        "dep": {"com": ["@echo "Putting on socks.""], "dep": ["d"]}
+    },
+    "b": {
+        "hash": "",
+        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
+    },
+    "f": {
+        "hash": "",
+        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
+    },
+    "a": {
+        "hash": "",
+        "dep": {"com": ["@echo "Putting on socks.""], "dep": ["b", "c", "d"]}
+    },
+    "e": {
+        "hash": "",
+        "dep": {"com": ["@echo "Putting on socks.""], "dep": ["g", "f", "q"]}
+    },
+    "d": {
+        "hash": "",
+        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
+    }
+}

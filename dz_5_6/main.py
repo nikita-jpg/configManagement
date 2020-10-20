@@ -5,7 +5,18 @@ import os.path
 
 "'"
 {
-    "b": [],
+    "b": {
+        "com":["@echo \"Putting on socks."],
+        "dep":[]
+    },
+    "b": {
+        "com": ["@echo \"Putting on socks."],
+        "dep": []
+    },
+    "b": {
+        "com": ["@echo \"Putting on socks."],
+        "dep": []
+    },
     "f": [],
     "d": [],
     "g": [],
@@ -18,20 +29,44 @@ import os.path
 
 # 2 components
 graph2 = {
-    "a": ["b", "c", "d"],
-    "b": [],
-    "c": ["d"],
-    "d": [],
-    "e": ["g", "f", "q"],
-    "g": [],
-    "f": [],
-    "q": []
+    "a": {
+        "com":["@echo \"Putting on socks.\""],
+        "dep":["b", "c", "d"]
+    },
+    "b": {
+        "com": ["@echo \"Putting on socks.\""],
+        "dep": []
+    },
+    "c": {
+        "com": ["@echo \"Putting on socks.\""],
+        "dep": ["d"]
+    },
+    "d": {
+        "com": ["@echo \"Putting on socks.\""],
+        "dep": []
+    },
+    "e": {
+        "com": ["@echo \"Putting on socks.\""],
+        "dep": ["g", "f", "q"]
+    },
+    "g": {
+        "com": ["@echo \"Putting on socks.\""],
+        "dep": []
+    },
+    "f": {
+        "com": ["@echo \"Putting on socks.\""],
+        "dep": []
+    },
+    "q": {
+        "com": ["@echo \"Putting on socks.\""],
+        "dep": []
+    },
 }
 
 from collections import deque
 
 GRAY, BLACK = 0, 1
-BD_NAME = "bd.txt"
+BD_NAME = "bd.json"
 TEST_EXPANSION = ".file"
 DEP = "dep"
 HASH = "hash"
@@ -85,27 +120,77 @@ def init_bd(graph):
     order.reverse()
     return infile()
 
+def download_package(package_name,need):
+    with open(BD_NAME) as f:
+        data = json.load(f)
 
-def download_package(package_name):
-    f = open(BD_NAME, "wr")
-    js_doc = json.loads(f.read())
-    dep = js_doc.get(package_name)
-    deps = dep.get(DEP)
-    hash = dep.get(HASH);
+    deps = data[package_name][DEP]
+    hash = data[package_name][HASH]
+
+    def add_hash(inf):
+        # Добавляем хэш
+        with open(BD_NAME, 'r') as f:
+            data = json.load(f)
+        with open(BD_NAME, 'w') as write_file:
+            hash_object = hashlib.md5(inf.encode())
+            data[package_name][HASH] = hash_object.hexdigest()
+            json.dump(data, write_file, indent=4)
 
     if os.path.exists(package_name + TEST_EXPANSION):
-        print("Существует")
+        with open(package_name + TEST_EXPANSION, "r") as f:
+            inf = f.read()
+            hash_object = hashlib.md5(inf.encode())
+            file_hash = hash_object.hexdigest()
+        if file_hash != hash :
+            add_hash(inf)
+            need.append(package_name)
+        for dep_name in deps:
+             download_package(dep_name,need)
+
         return
     else:
+        need.append(package_name)
         if len(deps) != 0:
             for dep_name in deps:
-                download_package(dep_name)
-        file = open(package_name + TEST_EXPANSION, "w")
-        inf = str(random.random())
-        for char in inf:
-            file.write(char)
+                download_package(dep_name,need)
+
+        #Пишем в файл рандомное число
+        with open(package_name + TEST_EXPANSION, "w") as f:
+            inf = str(random.random())
+            for char in inf:
+                f.write(char)
+
+        add_hash(inf)
+        # Добавляем хэш
+        return
+
+def show():
+    with open(BD_NAME,'r') as f:
+        data = json.load(f)
+    for key in data:
+        print(key)
 
 
 if __name__ == '__main__':
-    print(init_bd(graph2))
-    download_package("a")
+    init_bd(graph2)
+    need = []
+    inp = input().split(' ')
+
+    while inp[0]!= "0":
+        if inp[0] == "show":
+            show()
+
+        if inp[0] == "make":
+            pack_name = inp[1]
+            download_package(pack_name, need)
+            if need[0] == pack_name:
+                need = need[1:]
+
+                if len(need) == 0:
+                    print(pack_name + "is already updated")
+                else:
+                    for i in need:
+                        print(i)
+
+        inp = input().split(' ')
+
