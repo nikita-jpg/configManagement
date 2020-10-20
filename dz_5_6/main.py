@@ -5,18 +5,7 @@ import os.path
 
 "'"
 {
-    "b": {
-        "com":["@echo \"Putting on socks."],
-        "dep":[]
-    },
-    "b": {
-        "com": ["@echo \"Putting on socks."],
-        "dep": []
-    },
-    "b": {
-        "com": ["@echo \"Putting on socks."],
-        "dep": []
-    },
+    "b": [],
     "f": [],
     "d": [],
     "g": [],
@@ -29,38 +18,14 @@ import os.path
 
 # 2 components
 graph2 = {
-    "a": {
-        "com":["@echo \"Putting on socks.\""],
-        "dep":["b", "c", "d"]
-    },
-    "b": {
-        "com": ["@echo \"Putting on socks.\""],
-        "dep": []
-    },
-    "c": {
-        "com": ["@echo \"Putting on socks.\""],
-        "dep": ["d"]
-    },
-    "d": {
-        "com": ["@echo \"Putting on socks.\""],
-        "dep": []
-    },
-    "e": {
-        "com": ["@echo \"Putting on socks.\""],
-        "dep": ["g", "f", "q"]
-    },
-    "g": {
-        "com": ["@echo \"Putting on socks.\""],
-        "dep": []
-    },
-    "f": {
-        "com": ["@echo \"Putting on socks.\""],
-        "dep": []
-    },
-    "q": {
-        "com": ["@echo \"Putting on socks.\""],
-        "dep": []
-    },
+    "a": ["b", "c", "d"],
+    "b": [],
+    "c": ["d"],
+    "d": [],
+    "e": ["g", "f", "q"],
+    "g": [],
+    "f": [],
+    "q": []
 }
 
 from collections import deque
