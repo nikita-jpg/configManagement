@@ -1,0 +1,24 @@
+    <program> ::= '(' <s-list> ')' 
+                |    
+    <s-list> ::= <s-exp> <s-list>
+                |                    
+    <s-exp> ::= '(' <s-list> ')' 
+                | '('<studs>')' '('<groups>')' '('<subject>')'
+    <studs> ::= <studs> <studs>
+                | <student> <studs>
+                |
+                
+    <groups> ::= <groups_> '('<s_number> ',' <f_number>')' '('<group_str>')'
+    <student> ::= '('<name_> <name_str> <age_> <age_number> <group_> <group_str>')'  
+    <subject> ::= <subject_> "\""<str>"\""   
+    <name_str> ::= "\""<str>"\""
+    <group_str> ::= string
+    <age_number> ::= integer 
+    <s_number> ::= integer 
+    <f_number> ::= integer 
+    <studs_> ::= 'studs' 
+    <groups_> ::= 'groups'
+    <subject_> ::= 'subject'
+    <name_> ::= 'name'
+    <age_> ::= 'age'
+    <group_> ::= 'group'
