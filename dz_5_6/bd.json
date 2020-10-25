@@ -1,42 +1,44 @@
 {
-    "com": {
-        "hash": "",
-        "dep": None
-    },
-    "dep": {
-        "hash": "",
-        "dep": None
-    },
-    "g": {
-        "hash": "",
-        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
-    },
-    "q": {
-        "hash": "",
-        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
-    },
-    "c": {
-        "hash": "",
-        "dep": {"com": ["@echo "Putting on socks.""], "dep": ["d"]}
-    },
     "b": {
-        "hash": "",
-        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
+        "hash": "aea1fbfd16a52aefd9a886f005d912eb",
+        "dep": []
     },
     "f": {
         "hash": "",
-        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
+        "dep": []
     },
-    "a": {
+    "d": {
+        "hash": "65a8e93947208efe536b279b0692960f",
+        "dep": []
+    },
+    "c": {
+        "hash": "cc2b9bb62410f457d3a034e8c9c17792",
+        "dep": [
+            "d"
+        ]
+    },
+    "g": {
         "hash": "",
-        "dep": {"com": ["@echo "Putting on socks.""], "dep": ["b", "c", "d"]}
+        "dep": []
+    },
+    "q": {
+        "hash": "",
+        "dep": []
     },
     "e": {
         "hash": "",
-        "dep": {"com": ["@echo "Putting on socks.""], "dep": ["g", "f", "q"]}
+        "dep": [
+            "g",
+            "f",
+            "q"
+        ]
     },
-    "d": {
-        "hash": "",
-        "dep": {"com": ["@echo "Putting on socks.""], "dep": []}
+    "a": {
+        "hash": "80727aa8a98db6d1b38c9a081da8e91b",
+        "dep": [
+            "b",
+            "c",
+            "d"
+        ]
     }
 }
